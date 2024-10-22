@@ -13,14 +13,14 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nurmuhammad9888/telebot"
+    "url": "git+https://github.com/nursher/botbuhoro"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nurmuhammad9888/telebot/issues"
+    "url": "https://github.com/nursher/botbuhoro/issues"
   },
-  "homepage": "https://github.com/nurmuhammad9888/telebot#readme",
+  "homepage": "https://github.com/nursher/botbuhoro#readme",
   "description": ""
 }
