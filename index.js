@@ -6,7 +6,6 @@ const TOKEN = process.env.TOKEN
 const bot = new TelegramBot(TOKEN, {polling: true});
 const fs = require('fs');
 
-
 const express = require('express')
 const app = express()
 
@@ -18,11 +17,45 @@ app.listen(port, () => {
     console.log(`server running https://localhost:${port}`);
 })
 
-bot.on('message',msg =>{
-    // console.log(msg);
-})
+const commands = [
+
+    {
+
+        command: "start",
+        description: "♻️ botni qayta ishga tushrish"
+
+    },
+    {
+
+        command: "sagdiyana",
+        description: "sagdiyana ofis"
+
+    },
+    {
+
+        command: "galaosiyo",
+        description: "galaosiyo ofis"
+
+    },
+    {
+
+        command: "samarkanskiy",
+        description: "samarkanskiy ofis"
+
+    },
+    {
+
+        command: "lakatsiya",
+        description: "📍 lakatsiya"
+
+    },
+
+]
+
+bot.setMyCommands(commands);
+
 // Kalit so'zlar
-const keywords = ['sultan taxi ofis','sagdiyana','samarkanskiy', 'galaosiyo', 'admin', 'admn', 'yordam', 'aloo', 'tel nomer','tel nomir', 'tel raqam','pul yechish', 'pul chiqarish', 'qarz berib', 'qarz tashlab', 'limit', 'lokatsiya', 'lakatsiya', 'сагдияна', 'галаосиё', 'самарканский' , 'админ', 'адмн', 'пул ечиш', 'пул чиқариш', 'лакация', 'локация',, 'тел номер', 'тел номир'];
+const keywords = ['sultan taxi ofis', 'admin', 'admn', 'yordam', 'aloo', 'tel nomer','tel nomir', 'tel raqam','pul yechish', 'pul chiqarish', 'qarz berib', 'qarz tashlab', 'limit' , 'админ', 'адмн', 'пул ечиш', 'пул чиқариш', 'тел номер', 'тел номир'];
 
 // Habardagi kalit so'zlarni aniqlash uchun funksiya
 function findKeywords(message) {
@@ -36,26 +69,28 @@ function findKeywords(message) {
 } 
 
 bot.on('message', (msg) => {
+    if (!msg.text) return;
     const chatId = msg.chat.id;
     const messageText = msg.text.toString().toLowerCase();
     const foundKeywords = findKeywords(messageText);
+
     
-    const userId = msg.from.id;
-    const username = msg.from.username;
-    const text = msg.text;
+    // const userId = msg.from.id;
+    // const username = msg.from.username;
+    // const text = msg.text;
     
-    const messageData = {
-        userId: userId,
-        username: username,
-        messageText: text,
-    };
+    // const messageData = {
+    //     userId: userId,
+    //     username: username,
+    //     messageText: text,
+    // };
     
     let replay = {reply_to_message_id: msg.message_id};
     let htmlTeg = { parse_mode: 'HTML'}
     
     // JSON ma'lumotlarini faylga qo'shish
     // fs.appendFile('messages.json', JSON.stringify(messageData)  + '\n ', (err) => {
-    //         if (err) {
+        //         if (err) {
     //         console.error('Xatolik yuz berdi:', err);
     //         return;
     //     }
@@ -71,15 +106,15 @@ bot.on('message', (msg) => {
         },
         {
             name: "GALOSIYO",
-            work_time: "(08:00-00:00) ",
-            phone: "+998918213393",
+            work_time: "(08:00-00:00)",
+            phone: "+998948263393",
             telegram: "@sultantaxi_bukhara_galaosiyo",
             url: "https://maps.app.goo.gl/GQsVQ8wwXzxDFpv78",
         },
         {
             name: "SAMARKANDSKI",
             work_time: "(08:00-00:00)",
-            phone: "+998918323393",
+            phone: "+998948293393",
             telegram: "@sultantaxibuxara_samarkansdki",
             url: "https://maps.google.com/maps?q=39.784087,64.420057&ll=39.784087,64.420057&z=16",
         }
@@ -89,10 +124,11 @@ bot.on('message', (msg) => {
     if (messageText === '/start') {
         bot.sendMessage(chatId, ' ASSALOMU ALAYKUM SULTAN TAXI YORDAMCHI BOTGA XUSH KELIBSIZ ');
     } 
-    else if (messageText === 'salom') {
+    if (messageText === 'salom') {
         const messageText = 'Assalomu alaykum sizga qanday yordam bera olishim mumkin?'; 
         bot.sendMessage(chatId, messageText);
-    } else if (foundKeywords.length > 0 && foundKeywords[0] === "sagdiyana" || foundKeywords[0] === "sagdyana" || foundKeywords[0] === "сагдияна" || messageText === '/sagdiyana') {
+    }
+    if (messageText === '/sagdiyana') {
         const options = {
             parse_mode: 'HTML',
             reply_markup: {
@@ -116,7 +152,7 @@ bot.on('message', (msg) => {
             `🔴 Oynalar tusini o'zgartrish (ruxsatnoma) \n ` +
             'Lokatsiya uchun tugmani bosing: ', {...replay ,...htmlTeg, ...options});
         }
-        else if (foundKeywords.length > 0 &&  foundKeywords[0] === "samarkanskiy" || foundKeywords[0] === "самарканский" || messageText === '/samarkanskiy') {
+        if (messageText === '/samarkanskiy') {
             const options = {
                 parse_mode: 'HTML',
                 reply_markup: {
@@ -128,7 +164,7 @@ bot.on('message', (msg) => {
             bot.sendMessage(chatId,
                 `<b> SAMARKANDSKI </b> \n` +
                 `💠 ISH VAQTI (08:00-00:00) \n` +
-                `☎️ +998918323393 \n` +
+                `☎️ +998948293393 \n` +
                 `📝 @sultantaxibuxara_samarkansdki \n\n` + 
                 
                 `🔘 OFISNING IMKONYATLARI \n `+
@@ -141,7 +177,7 @@ bot.on('message', (msg) => {
                 'Lokatsiya uchun tugmani bosing: ', {...replay ,...htmlTeg, ...options});
                 
             }
-            else if (foundKeywords.length > 0 && foundKeywords[0] === "galaosiyo" || foundKeywords[0] === "галаосиё" || messageText === '/galaosiyo') {
+            if (messageText === '/galaosiyo') {
                 const options = {
                     parse_mode: 'HTML',
                     reply_markup: {
@@ -153,7 +189,7 @@ bot.on('message', (msg) => {
                 bot.sendMessage(chatId,
                     `<b> GALOSIYO </b> \n` +
                     `💠 ISH VAQTI (08:00-00:00) \n` +
-                    `☎️ +998918213393 \n` +
+                    `☎️ +998948263393 \n` +
                     `📝 @sultantaxi_bukhara_galaosiyo \n\n` + 
                     
                     `🔘 OFISNING IMKONYATLARI \n `+
@@ -165,14 +201,14 @@ bot.on('message', (msg) => {
                     `🔴 Oynalar tusini o'zgartrish (ruxsatnoma) \n ` +
                     'Lokatsiya uchun tugmani bosing: ', {...replay ,...htmlTeg, ...options});
                 }
-                else if (foundKeywords.length > 0 && foundKeywords[0] === "pul yechish" || foundKeywords[0] === "pul chiqarish" || foundKeywords[0] === "пул чиқариш" || foundKeywords[0] === "пул ечиш") {
+                if (foundKeywords.length > 0 && foundKeywords[0] === "pul yechish" || foundKeywords[0] === "pul chiqarish" || foundKeywords[0] === "пул чиқариш" || foundKeywords[0] === "пул ечиш") {
                     bot.sendMessage(chatId,
                         ` ASSALOMU ALAYKUM  PUL YECHISH ''SULTAN TAXI''NING MAXSUS BOTI ORQALI 24/7 YECHIB OLISHINGIZ MUMKIN \n` +
                         ` https://t.me/SultanTaxi_Bukharabot \n` + 
                         `  \n\n`,
                         {...replay ,...htmlTeg})
                     } 
-                    else if (foundKeywords.length > 0 && foundKeywords[0] === 'admin' || foundKeywords[0] === 'admn' || foundKeywords[0] === 'aloo' || messageText === 'yordam'  || foundKeywords[0] === 'админ' || foundKeywords[0] === 'адмн' || foundKeywords[0] === 'qarz berib' || foundKeywords[0] === 'qarz tashlab' || foundKeywords[0] === 'limit' || messageText === '?' || messageText === '.') {
+                    if (foundKeywords.length > 0 && foundKeywords[0] === 'admin' || foundKeywords[0] === 'admn' || foundKeywords[0] === 'aloo' || messageText === 'yordam'  || foundKeywords[0] === 'админ' || foundKeywords[0] === 'адмн' || foundKeywords[0] === 'qarz berib' || foundKeywords[0] === 'qarz tashlab' || foundKeywords[0] === 'limit' || messageText === '?' || messageText === '.') {
                         bot.sendMessage(chatId, 
                             `👋Assalomu alaykum \n`+
                             `🧐Sizga qanday yordam bera olaman ? \n`+
@@ -183,18 +219,16 @@ bot.on('message', (msg) => {
                             `📱+998918223393 biz bilan bog'laning \n`,
                             {...replay ,...htmlTeg})
                         }
-                        else if (foundKeywords.length > 0 && foundKeywords[0] === 'tel nomir' || foundKeywords[0] === 'tel nomer' || foundKeywords[0] === 'тел номер' || foundKeywords[0] === 'тел номир' || messageText === 'tel raqam' ) {
+                        if (foundKeywords.length > 0 && foundKeywords[0] === 'tel nomir' || foundKeywords[0] === 'tel nomer' || foundKeywords[0] === 'тел номер' || foundKeywords[0] === 'тел номир' || messageText === 'tel raqam' ) {
                             bot.sendMessage(chatId, 
                                 `👋Assalomu alaykum \n`+
                                 `🧐Sizga qanday yordam bera olaman ? \n`+
                                 `+998918223393 SAGDIYANA \n `+
-                                `+998918323393 SAMARKANSKIY \n `+
-                                `+998918213393 GALAOSIYO biz bilan bog'laning \n `,
+                                `+998948293393 SAMARKANSKIY \n `+
+                                `+998948263393 GALAOSIYO biz bilan bog'laning \n `,
                                 {...replay ,...htmlTeg})
                             }
-                            else if (foundKeywords.length > 0 && foundKeywords[0] === 'lakatsiya' || foundKeywords[0] === 'lokatsiya'|| foundKeywords[0] === 'локация' || foundKeywords[0] === 'лакация' ) {
-                                
-                                
+                            if (messageText === '/lakatsiya') {
                                 // Har bir ofis uchun xabar va lokatsiya tugmalarini jo'natish
                                 locations.forEach(location => {
                                     const options = {
@@ -215,7 +249,7 @@ bot.on('message', (msg) => {
                                 });
                             }
                             
-                            else if(foundKeywords.length > 0 && foundKeywords[0] === 'sultan taxi ofis' || messageText === '/malumot' || messageText === '/malumot@sultantaxibuhoroyordamchi_bot'){
+                            if(foundKeywords.length > 0 && foundKeywords[0] === 'sultan taxi ofis' || messageText === '/malumot' || messageText === '/malumot@sultantaxibuhoroyordamchi_bot'){
                                 const servicesMessage = `👨🏻‍💻  ASSALOMU ALAYKUM HAYDOVCHILAR SIZNI OFFICEMIZDA KUTIB QOLAMIZ VA TURLI XIL XIZMATLARIMIZNI TAKLIF QILAMIZ\n\n`
                                 +
                                 `❇️ LITSENZIYA \n`+
@@ -232,12 +266,12 @@ bot.on('message', (msg) => {
                                 +
                                 `2.🔔 SAMARKANDSKI \n `+
                                 `💠  ISH VAQTI (08:00-00:00) \n `+
-                                `☎️  +998918323393 \n `+
+                                `☎️  +998948293393 \n `+
                                 `📝  @sultantaxibuxara_samarkansdki \n\n`
                                 +
                                 `3.🔔 GALOSIYO \n`+
                                 `💠  ISH VAQTI (08:00-00:00) \n`+
-                                `☎️  +998918213393 \n`+
+                                `☎️  +998948263393 \n`+
                                 `📝  @sultantaxi_bukhara_galaosiyo \n\n` 
                                 +
                                 
@@ -251,8 +285,5 @@ bot.on('message', (msg) => {
                                 `📝 @sultantaxibukhara \n `
                                 ;
                                 bot.sendMessage(chatId, servicesMessage, {...replay, ...htmlTeg});
-                            } else {
-                                const data = ``
-                                // bot.sendMessage(chatId, data);
                             }
                         });
