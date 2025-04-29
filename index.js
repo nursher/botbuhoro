@@ -101,7 +101,7 @@ bot.on('message', (msg) => {
             name: "SAGDIYANA",
             work_time: "24/7",
             phone: "+998918223393",
-            telegram: "@sultantaxi_bukhara",
+            telegram: "@sultantaxi_sagdiana",
             url: "https://maps.app.goo.gl/f4C42HZhcFsxs9GXA",
         },
         {
@@ -141,11 +141,12 @@ bot.on('message', (msg) => {
             `<b> SAGDIYANA </b> \n` +
             `💠  ISH VAQTI 24/7 \n` +
             `☎️ +998918223393 \n` +
-            `📝 @sultantaxi_bukhara \n\n` + 
+            `📝 @sultantaxi_sagdiana \n\n` + 
             
             `🔘 OFISNING IMKONYATLARI \n `+
             `🔴 Taximetrdagi muammolaringizni bartaraf etish \n ` +
-            `🔴 Hisobingizni to'ldirganingizda +20% Bonus \n ` +
+            `🔴 Оfisimiz orqali taksometr balansini to'ldirsangiz +20% BONUSga ega bo'lasiz! \n ` +
+            `🔴 Click va Payme orqali taksometr balansini to'ldirsangiz +15% BONUSga ega bo'lasiz! \n ` +
             `🔴 Hisobdan pul yechish 24/7 (T/g bot) \n ` +
             `🔴 Avto Sug'irta \n ` +
             `🔴 Litsenziya taxi \n ` +
@@ -169,7 +170,8 @@ bot.on('message', (msg) => {
                 
                 `🔘 OFISNING IMKONYATLARI \n `+
                 `🔴 Taximetrdagi muammolaringizni bartaraf etish \n ` +
-                `🔴 Hisobingizni to'ldirganingizda +20% Bonus \n ` +
+                `🔴 Оfisimiz orqali taksometr balansini to'ldirsangiz +20% BONUSga ega bo'lasiz! \n ` +
+                `🔴 Click va Payme orqali taksometr balansini to'ldirsangiz +15% BONUSga ega bo'lasiz! \n ` +
                 `🔴 Hisobdan pul yechish 24/7 (T/g bot) \n ` +
                 `🔴 Avto Sug'irta \n ` +
                 `🔴 Litsenziya taxi \n ` +
@@ -194,7 +196,8 @@ bot.on('message', (msg) => {
                     
                     `🔘 OFISNING IMKONYATLARI \n `+
                     `🔴 Taximetrdagi muammolaringizni bartaraf etish \n ` +
-                    `🔴 Hisobingizni to'ldirganingizda +20% Bonus \n ` +
+                    `🔴 Оfisimiz orqali taksometr balansini to'ldirsangiz +20% BONUSga ega bo'lasiz! \n ` +
+                    `🔴 Click va Payme orqali taksometr balansini to'ldirsangiz +15% BONUSga ega bo'lasiz! \n ` +
                     `🔴 Hisobdan pul yechish 24/7 (T/g bot) \n ` +
                     `🔴 Avto Sug'irta \n ` +
                     `🔴 Litsenziya taxi \n ` +
@@ -213,7 +216,7 @@ bot.on('message', (msg) => {
                             `👋Assalomu alaykum \n`+
                             `🧐Sizga qanday yordam bera olaman ? \n`+
                             `🙋‍♂️ Iltimos operator javobini kuting \n`+
-                            `✈️@sultantaxi_bukhara  \n `+
+                            `✈️@sultantaxi_sagdiana  \n `+
                             `✈️@sultantaxibuxara_samarkansdki \n `+
                             `✈️@sultantaxi_bukhara_galaosiyo \n `+
                             `📱+998918223393 biz bilan bog'laning \n`,
@@ -262,7 +265,7 @@ bot.on('message', (msg) => {
                                 `1.🔔 SAGDIYANA \n`+
                                 `💠   ISH VAQTI 24/7 \n`+
                                 `☎️   +998918223393 \n`+
-                                `📝   @sultantaxi_bukhara \n\n`
+                                `📝   @sultantaxi_sagdiana \n\n`
                                 +
                                 `2.🔔 SAMARKANDSKI \n `+
                                 `💠  ISH VAQTI (08:00-00:00) \n `+
@@ -276,13 +279,13 @@ bot.on('message', (msg) => {
                                 +
                                 
                                 `<b> Оfisimiz orqali  taksometr balansini to'ldirsangiz +20% BONUSga ega bo'lasiz! </b> \n\n`+
-                                `<b> Click va Payme orqali  taksometr balansini to'ldirsangiz +20% BONUSga ega bo'lasiz! </b> \n\n` +
+                                `<b> Click va Payme orqali  taksometr balansini to'ldirsangiz +15% BONUSga ega bo'lasiz! </b> \n\n` +
                                 `<b> Endi karta orqali qilingan to'lov va bonuslarni TELEGRAM BOT @multidriver_sultantaxibot da foizsiz yechvolishingiz mumkin </b> \n\n` +
                                 
                                 `☎️ Ma'lumotlar:  \n `+
                                 `☎️ +998918223393 \n `+
                                 `⌨️ 24/7  \n `+
-                                `📝 @sultantaxibukhara \n `
+                                `📝 @sultantaxi_sagdiana \n `
                                 ;
                                 bot.sendMessage(chatId, servicesMessage, {...replay, ...htmlTeg});
                             }
